@@ -15,11 +15,10 @@
 #Pro kontrolu předvolby použijte slicing (viz první lekce) pro získání prvních 4 znaků řetězce. Ty porovnejte s řetězcem "+420".
 
 def phone_num(num):
-    if len(num) == 9 or (len(num) == 13 and num[0:4] == '+420'):
-        print("Zadane cislo je spravne")
+    if len(num) == 9 or (len(num) == 13 and num[0:4] == '+420'):   
+        return True
     else:
-        print('Zadali jste spatne cislo!')
-        exit()
+        return False
 
 def sms_price(sms):
     price = (len(sms)/100) * 3
@@ -27,10 +26,12 @@ def sms_price(sms):
 
 num_input = input("Dobry den! Zadejte prosim telefonni cislo, kam budete chtit zaslat zpravu: ")
 
-phone_num(num_input)
 
-sms_input = input("Nyni prosim zadejte svou zpravu: ")
+if phone_num(num_input) == True:
+    print("Zadane cislo je spravne")
+    sms_input = input("Nyni prosim zadejte svou zpravu: ")
+    final_price = sms_price(sms_input)
+    print(f'Děkujeme! Na telefonni cislo {num_input} jsme zaslali zpravu v cene {final_price}.') 
 
-final_price = sms_price(sms_input)
-
-print(f'Děkujeme! Na telefonni cislo {num_input} jsme zaslali zpravu v cene {final_price}.') 
+else:
+    print('Zadali jste spatne cislo!')
