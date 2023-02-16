@@ -9,20 +9,16 @@ with open('ukol_03.json', encoding='utf-8') as soubor:
 
 print(data) 
 
+prospech = {}
 
 for jmeno, body in data.items():
     if body > 60:
-        with open('prospech.json', mode='w', encoding='utf-8') as vystupni_soubor:
-            json.dump(data, vystupni_soubor, ensure_ascii=False, indent=4)
-        with open('prospech.json', encoding='utf-8') as file:
-            output[data] = json.load(file)
-        output[data]['hodnoceni'].update(str('Pass'))
-        
+        prospech[jmeno] = 'Pass'
     else:
-        with open('prospech.json', mode='w', encoding='utf-8') as vystupni_soubor:
-            json.dump(data, vystupni_soubor, ensure_ascii=False, indent=4)
-        with open('prospech.json', encoding='utf-8') as file:
-            output = json.load(file)
-        output[data]['hodnoceni'].update(str('Fail'))
+        prospech[jmeno] = 'Fail'
 
-print(vystupni_soubor)
+jsonString = json.dumps(prospech, ensure_ascii=False)
+
+jsonFile = open("prospech.json", "w",  encoding='utf-8')
+jsonFile.write(jsonString)
+jsonFile.close()
