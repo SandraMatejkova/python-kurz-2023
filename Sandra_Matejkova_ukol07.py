@@ -46,6 +46,8 @@ if auto_input in autopujcovna:
     if auto_input in autopujcovna:
         print(autopujcovna[auto_input].get_info())
         autopujcovna[auto_input].pujc_auto()
+        pocet_dni_input = int(input('Na jak dlouho si auto půjčíte?: '))
+        autopujcovna[auto_input].vrat_auto(pocet_dni_input)
     else:
         print('Bohužel tuto značku nemáme.')
 else:
